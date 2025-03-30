@@ -1,15 +1,18 @@
-name: "Auto Label Issues"
+name: "Auto Label New Issues"
 
 on:
   issues:
     types: [opened]
 
+permissions:
+  issues: write  # ✅ Grants permission to modify issues
+
 jobs:
-  label_issue:
+  auto-label:
     runs-on: ubuntu-latest
     steps:
-      - name: Auto Label New Issues
+      - name: Assign Label to New Issues
         uses: actions-ecosystem/action-add-labels@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          labels: "needs-triage"
+          labels: "triage"
